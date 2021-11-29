@@ -54,3 +54,16 @@ R project first, then git & Github repo.
 - usethis::use_git() for version control local repo
 - usethis:use_github() to create an upstream repo and connect to it
 
+## paletteer: aggregated color palettes
+```{r}
+storms %>% 
+  group_by(name) %>% 
+  summarize(min_pressure = min(pressure, na.rm = TRUE)) %>% 
+  slice_min(n = 10, min_pressure) %>% 
+  ggplot(aes(x = min_pressure, y = name)) +
+    geom_col(aes(fill = name)) + 
+    scale_fill_paletteer_d("trekcolors::lcars_cardassian") # pkg::palette 
+
+    #paletteerr_d("palettetown::volbeat") in console to get hex value for individual colors from palette
+```
+
